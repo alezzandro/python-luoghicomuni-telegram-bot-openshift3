@@ -18,7 +18,7 @@ def help(bot, update):
     update.message.reply_text('Digita il comando /luogocomune o /lc ogni volta che vuoi!')
 
 def luogocomune(bot, update):
-    update.message.reply_text(random.choice(list(open('file.txt'))))
+    update.message.reply_text(random.choice(list(open('luoghicomuni.txt'))))
 
 
 def error(bot, update, error):
