@@ -26,8 +26,6 @@ def luogocomune(bot, update):
 def error(bot, update, error):
     logger.warning('Update "%s" caused error "%s"' % (update, error))
 
-# Write your handlers here
-
 
 def setup(webhook_url=None):
     """If webhook_url is not passed, run with long-polling."""
