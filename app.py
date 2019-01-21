@@ -21,7 +21,7 @@ def help(bot, update):
     update.message.reply_text('Digita il comando /luogocomune o /lc ogni volta che vuoi!')
 
 def luogocomune(bot, update):
-    logger.log('### Messaggio ricevuto: "'+update.message.text+'"') 
+    logger.log('### Messaggio ricevuto: "' + str(update.message.text) + '"') 
     textsearch = re.match('^\s*?$', update.message.text)
     filelc = open(LC_FILE, 'r')
     if textsearch != None:
@@ -33,7 +33,7 @@ def luogocomune(bot, update):
     filelc.close()
 
 def add(bot, update):
-    logger.log('### SUGGERIMENTO: '+update.message.text)
+    logger.log('### SUGGERIMENTO: ' + str(update.message.text)
     update.message.reply_text('Grazie per il suggerimento, provvederemo ad aggiungerlo quanto prima!')
 
 def error(bot, update, error):
