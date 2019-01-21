@@ -33,7 +33,7 @@ def luogocomune(bot, update):
     filelc.close()
 
 def add(bot, update):
-    logger.log('### SUGGERIMENTO: ' + str(update.message.text)
+    logger.log('### SUGGERIMENTO: ' + str(update.message.text))
     update.message.reply_text('Grazie per il suggerimento, provvederemo ad aggiungerlo quanto prima!')
 
 def error(bot, update, error):
