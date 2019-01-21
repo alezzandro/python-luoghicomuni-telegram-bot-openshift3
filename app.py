@@ -14,21 +14,22 @@ TOKEN = os.environ['TELEGRAM_TOKEN']
 LC_FILE = "luoghicomuni.txt"
 
 def start(bot, update):
-    update.message.reply_text('Benvenuto! Digita il comando /luogocomune o /lc ogni volta che vuoi!')
+    update.message.reply_text('Benvenuto! Digita il comando /lc ogni volta che vuoi!')
 
 
 def help(bot, update):
-    update.message.reply_text('Digita il comando /luogocomune o /lc ogni volta che vuoi!')
+    update.message.reply_text('Digita il comando /lc ogni volta che vuoi!')
 
 def luogocomune(bot, update):
-    logger.info('### Messaggio ricevuto: "' + str(update.message.text) + '"') 
-    textsearch = re.match('^\s*?$', update.message.text)
+    textmessage=update.message.text.replace('/lc','').strip()
+    logger.info('### Messaggio ricevuto: "' + str(textmessage) + '"') 
+    textsearch = re.match('^\s*?$', textmessage)
     filelc = open(LC_FILE, 'r')
     if textsearch != None:
         update.message.reply_text(random.choice(list(filelc)))
     else:
         filelcstr = filelc.read()
-        items=re.findall('^.*?'+update.message.text.strip()+'.*?$',filelcstr,re.MULTILINE)
+        items=re.findall('^.*?'+textmessage+'.*?$',filelcstr,re.MULTILINE)
         update.message.reply_text(random.choice(list(items)))
     filelc.close()
 
@@ -53,7 +54,6 @@ def setup(webhook_url=None):
         dp = updater.dispatcher
         dp.add_handler(CommandHandler("start", start))
         dp.add_handler(CommandHandler("help", help))
-        dp.add_handler(CommandHandler("luogocomune", luogocomune))
         dp.add_handler(CommandHandler("lc", luogocomune))
         dp.add_handler(CommandHandler("add", add))
 
