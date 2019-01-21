@@ -31,7 +31,7 @@ def luogocomune(bot, update):
         filelcstr = filelc.read()
         items=re.findall('^.*?'+textmessage+'.*?$',filelcstr,re.MULTILINE)
         if not items:
-            update.message.reply_text("Nessuna corrispondenza ma considera che " + random.choice(list(filelcstr)))
+            update.message.reply_text("Nessuna corrispondenza ma considera che: " + random.choice(filelcstr.split('\n')))
         else:
             update.message.reply_text(random.choice(list(items)))
     filelc.close()
