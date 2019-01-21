@@ -22,7 +22,7 @@ def help(bot, update):
 
 def luogocomune(bot, update):
     textmessage=update.message.text.replace('/lc','').strip()
-    logger.info('### Messaggio ricevuto: "' + str(textmessage) + '"') 
+    #logger.info('### Messaggio ricevuto: "' + str(textmessage) + '"') 
     textsearch = re.match('^\s*?$', textmessage)
     filelc = open(LC_FILE, 'r')
     if textsearch != None:
