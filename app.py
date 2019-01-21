@@ -21,19 +21,19 @@ def help(bot, update):
     update.message.reply_text('Digita il comando /luogocomune o /lc ogni volta che vuoi!')
 
 def luogocomune(bot, update):
-    logger.log("### Messaggio ricevuto: '"+update.message.text+"'") 
+    logger.log('### Messaggio ricevuto: "'+update.message.text+'"') 
     textsearch = re.match('^\s*?$', update.message.text)
     filelc = open(LC_FILE, 'r')
     if textsearch != None:
         update.message.reply_text(random.choice(list(filelc)))
     else:
         filelcstr = filelc.read()
-        items=re.findall("^.*?"+update.message.text.strip()+".*?$",filelcstr,re.MULTILINE)
+        items=re.findall('^.*?'+update.message.text.strip()+'.*?$',filelcstr,re.MULTILINE)
         update.message.reply_text(random.choice(list(items)))
     filelc.close()
 
 def add(bot, update):
-    logger.log("### SUGGERIMENTO: "+update.message.text)
+    logger.log('### SUGGERIMENTO: '+update.message.text)
     update.message.reply_text('Grazie per il suggerimento, provvederemo ad aggiungerlo quanto prima!')
 
 def error(bot, update, error):
