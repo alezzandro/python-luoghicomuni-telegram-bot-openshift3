@@ -38,6 +38,8 @@ def luogocomune(bot, update):
 
 def add(bot, update):
     logger.info('### SUGGERIMENTO: ' + str(update.message.text))
+    with open("/data/suggestions.txt", "a") as suggestionsfile:
+        suggestionsfile.write(str(update.message.text))
     update.message.reply_text('Grazie per il suggerimento, provvederemo ad aggiungerlo quanto prima!')
 
 def error(bot, update, error):
