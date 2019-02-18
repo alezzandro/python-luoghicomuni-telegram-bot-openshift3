@@ -37,15 +37,19 @@ def luogocomune(bot, update):
     filelc.close()
 
 def add(bot, update):
-    logger.info('### SUGGERIMENTO: ' + str(update.message.text))
-    with open("/data/suggestions.txt", "a") as suggestionsfile:
-        suggestionsfile.write(str(update.message.text))
-        suggestionsfile.close()
-    update.message.reply_text('Grazie per il suggerimento, provvederemo ad aggiungerlo quanto prima!')
+    suggestionsplitted=update.message.text.split("/add ")
+    if len(suggestionsplitted) == 2:
+        logger.info('### SUGGERIMENTO: ' + str(suggestionsplitted[1]))
+        with open("/data/suggestions.txt", "a") as suggestionsfile:
+            suggestionsfile.write(str(suggestionsplitted[1])+'\n')
+            suggestionsfile.close()
+        update.message.reply_text('Grazie per il suggerimento, provvederemo ad aggiungerlo quanto prima!')
+    else:
+        logger.warning('# Problema con un Suggerimento: ' +update.message.text)
+        update.message.reply_text('Sfortunatamente non sono riuscito a salvare il tuo suggerimento!')
 
 def error(bot, update, error):
     logger.warning('Update "%s" caused error "%s"' % (update, error))
-
 
 def setup(webhook_url=None):
     """If webhook_url is not passed, run with long-polling."""
